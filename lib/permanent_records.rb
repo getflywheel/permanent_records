@@ -107,6 +107,7 @@ module PermanentRecords
 
     def each_counter_cache
       _reflections.each do |name, reflection|
+        next unless respond_to?(name.to_sym)
         association = send(name.to_sym)
         next if association.nil?
         next unless reflection.belongs_to? && reflection.counter_cache_column
